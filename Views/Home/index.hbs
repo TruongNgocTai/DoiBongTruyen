@@ -1,0 +1,41 @@
+<div style="padding-top: 150px">
+        <div class="row justify-content-center">
+            <div class="col-4">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Nhập nơi đi</span>
+                    </div>
+                    <input type="text" class="form-control" aria-label="Dollar amount (with dot and two decimal places)">
+                </div>
+
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Chọn ngày đi</span>
+                    </div>
+                    <input id="datepicker" width="276" />
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Nhập nơi đến</span>
+                    </div>
+                    <input type="text" class="form-control" aria-label="Dollar amount (with dot and two decimal places)">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center">
+                <button class="btn btn-default">Đặt vé</button>
+            </div>
+        </div>
+    </div>open
+
+    <script>
+        $('#datepicker').datepicker({
+            uiLibrary: 'bootstrap4'
+        });
+    </script>

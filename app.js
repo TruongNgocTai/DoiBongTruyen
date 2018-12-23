@@ -7,6 +7,7 @@ var app = express();
 var exphbs = require('express-handlebars');
 var express_handlebars_sections = require('express-handlebars-sections');
 var bodyParser = require('body-parser');
+var HomeController = require('./Controller/HomeController');
 app.engine('hbs', exphbs({
     defaultLayout: 'public',
     layoutsDir: 'Views/Layout/',
@@ -29,7 +30,13 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: false
 }));
-
+app.use(function(req, res, next) {
+    //enabling CORS
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allows-Methods", "GET, HEAD, OPTION, POST, PUT");
+    res.header("Access-Control-Allows-Headers", "Origin, X-Request-With, ContentType, Content-Type, Acept, Authorization");
+    next()
+});
 var dbConfig = {
     user: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
@@ -57,8 +64,8 @@ var executeQuery = function(res, query) {
                     res.send(err);
                 } else {
                     res.send(recordset);
-                    sql.close();
                 }
+                sql.close();
             });
         }
     });
@@ -71,7 +78,7 @@ app.get("/:IDKhachHang", function(req, res) {
                     idkh + '\'';
     executeQuery(res, query);
 });
-
+app.use('/',HomeController);
 console.log('Starting app with config:', process.env);
 app.listen(process.env.PORT, () => {
     console.log('Site running on port ' + process.env.PORT);
